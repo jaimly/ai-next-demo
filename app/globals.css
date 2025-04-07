@@ -40,3 +40,7 @@ a {
     color-scheme: dark;
   }
 }
+
+.ant-list-item-meta-content {
+  width: auto !important;
+}
