@@ -31,22 +31,14 @@ echo "npm成功"
 
 # 判断是否需要build前端
 if [[ $IS_BUILD == 1 ]]; then
-    cp public/index.html public/index.html1
-    index1_md5=`md5sum public/index.html1 | awk '{ print $1 }'`
-    index_md5=`md5sum public/index.html | awk '{ print $1 }'`
-    if [ ! -d "dist" ] || [ $index1_md5 != $index_md5 ]; then
-        npm install @craco/craco
-        npm run build
-        npm uninstall @craco/craco
-    fi
-    rm -rf public/index.html1
+    npm run build
     echo "build前端成功"
 fi
 
 # 生成Dockerrile文件
 rm -rf Dockerfile
 echo "FROM node:18" >> Dockerfile
-echo "ENV NODE_ENV prod" >> Dockerfile
+echo "ENV NODE_ENV production" >> Dockerfile
 if [ $Host ]; then
     if host $Host > /dev/null 2>&1; then
         FILE_SEVER=$Host
