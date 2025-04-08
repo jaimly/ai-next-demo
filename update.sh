@@ -3,8 +3,8 @@
 # 预备 git、docker 命令
 
 # 下载带用户名和密码的链接
-# git clone https://jaimly:[密码]@gitee.com/jaimly/auto-parts
-# git remote set-url origin https://jaimly:[密码]@gitee.com/jaimly/auto-parts
+# git clone https://github.com/jaimly/ai-next-demo.git
+# git remote set-url origin https://github.com/jaimly/ai-next-demo.git
 
 Project=ai-next-demo
 
