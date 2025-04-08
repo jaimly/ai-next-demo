@@ -63,8 +63,6 @@ if [ $Host ]; then
     echo "生成DockerFile文件"
 fi
 
-# 复制初始资源
-\cp -rf res/* /home/www/${Project}
 # 停止并删除容器
 docker rm -f ${Project}
 # 删除镜像
@@ -72,4 +70,4 @@ docker rmi ${Project}
 # 生成镜像
 docker build -t ${Project} .
 # 启动容器
-docker run -d --name ${Project} --restart=always -v /home/www/${Project}:/app/res -p $Port:3000 ${Project}
+docker run -d --name ${Project} --restart=always -p $Port:3000 ${Project}
