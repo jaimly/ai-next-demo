@@ -44,24 +44,24 @@ if [[ $IS_BUILD == 1 ]]; then
 fi
 
 # 生成Dockerrile文件
+rm -rf Dockerfile
+echo "FROM node:18" >> Dockerfile
+echo "ENV NODE_ENV prod" >> Dockerfile
 if [ $Host ]; then
     if host $Host > /dev/null 2>&1; then
         FILE_SEVER=$Host
     else
         FILE_SEVER=$Host:$Port
     fi
-    rm -rf Dockerfile
-    echo "FROM node:18" >> Dockerfile
-    echo "ENV NODE_ENV prod" >> Dockerfile
     echo "ENV MYSQL_HOST $Host" >> Dockerfile
     echo "ENV MYSQL_USER $MYSQL_USER" >> Dockerfile
     echo "ENV MYSQL_PASSWORD $MYSQL_PASSWORD" >> Dockerfile
     echo "ENV FILE_SEVER http://$FILE_SEVER/res" >> Dockerfile
-    echo "WORKDIR /app" >> Dockerfile
-    echo "COPY . /app/" >> Dockerfile
-    echo "CMD npm start" >> Dockerfile
-    echo "生成DockerFile文件"
 fi
+echo "WORKDIR /app" >> Dockerfile
+echo "COPY . /app/" >> Dockerfile
+echo "CMD npm start" >> Dockerfile
+echo "生成DockerFile文件"
 
 # 停止并删除容器
 docker rm -f ${Project}
